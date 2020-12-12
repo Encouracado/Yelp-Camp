@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+	   
+	   <div class="col-6 offset-3"> 
+		<h1 class="text-center">Edit Campground</h1>
+		 <form action='/campgrounds/<%=campgroundSelected._id%>?_method=PUT' method='POST' novalidate class="formValidation">
+		  <div>
+			<label for="title" class="form-label" >Title:</label>
+			<input class="form-control" type="text" id="title" name="campground[title]" value="<%=campgroundSelected.title%>" required>
+		  </div>
+		  <div class="mb-3">
+			<label for="location" class="form-label" >Location:</label>
+			<input class="form-control" type="text" id="location" name="campground[location]" value="<%=campgroundSelected.location%>" required>
+		  </div>
+		  <div class="mb-3">
+           <label class="form-label" for="price" >Price:</label>
+            <div class="input-group mb-3">
+             <div class="input-group-prepend">
+              <div class="input-group-text">R$</div>
+              </div>
+             <input type="text" class="form-control" id="price"                         
+			       name="campground[price]" value="<%=campgroundSelected.price%>" required>
+            </div>
+          </div>
+		  <div class="mb-3">
+			<label for="image" class="form-label" >Image Url:</label>
+			<input class="form-control" type="text" id="image" name="campground[image]" value="       	<%=campgroundSelected.image%>" required>
+		  </div>
+		  <div class="mb-3">
+			<label for="description" class="form-label" >Description:</label>
+			<textarea class="form-control" type="text" id="description" name="campground[description]" required>   <%=campgroundSelected.description%>              </textarea>
+		  </div>
+		  <div class="mb-3">
+			<button class="btn btn-success">
+				UPDATE CAMPGROUND
+			</button>
+	      </div>
+			
+	  </form>
+	      <div class="mb-3">
+		     <a class="btn btn-primary mb-3" href="/campgrounds">ALL CAMPGROUNDS</a>
+		  </div>
+			
+
+		   
+	   </div>
+	   
+   </div>

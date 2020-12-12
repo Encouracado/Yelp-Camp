@@ -1,0 +1,7 @@
+<!- Sempre que um erro passar pelo middleware ele ira executar essa pagina ->
+<% layout('layouts/boilerplate') %>
+<div class="row">
+	<div class="alert alert-danger" role="alert">
+  Error Detected: <%= err.message %> <br><a href="/campgrounds" class="alert-link"> Return to Campgrounds</a>.<br> Stack: <%= err.stack %>
+</div>
+</div>
