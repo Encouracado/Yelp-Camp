@@ -6,13 +6,15 @@
 			
   <img src="<%= campgroundSelected.image %>" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title"><%= campgroundSelected.title %></h5>
+    <h5 class="card-title"><%= campgroundSelected.title %> </h5>
     <p class="card-text"><%= campgroundSelected.description %></p>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><%= campgroundSelected.location %></li>
+	<li class="list-group-item">Created by: <%= campgroundSelected.author.username %></li>
     <li class="list-group-item">R$<%= campgroundSelected.price %> for night</li>
   </ul>
+  <% if(currentUser && campgroundSelected.author.equals(currentUser._id)) { %>		
   <div class="card-body">
     <a href="/campgrounds/<%= campgroundSelected._id %>/edit" class="card-link btn btn-warning d-inline">Edit Campground</a>
 	
@@ -22,9 +24,12 @@
 		</button>
 	</form>
   </div>
+  <% } %>	
+			
 </div>
 		
 	<div class="coll">
+	<% if(currentUser){ %>
 	 <h2>
 		Leave a review!
 	</h2>
@@ -39,24 +44,30 @@
 			Submit your review!
 		</button>
 	</form>
+	<% } %>
 		<div class="col-6">
 	  <div class="card-body">
 			<div class="mb-3">
-			<% for(let review of campgroundSelected.reviews){%>
+			<% for(let review of campgroundSelected.reviews){ %>
 			  <h5 class="card-title">
 				 Rating: <%= review.rating %> 
-				</h5>
+			  </h5>
 				
 			  <p class="card-text">
 				Review: <%=review.body%>  
 			  </p>
+			  <h6 class="card-subtitle mb-2">
+				Created by:  
+				   <%= review.author.username %>
+			  </h6>
 			  <form action="/campgrounds/<%=campgroundSelected._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-			<button class="btn btn-sm btn-danger">
+		    <% if(currentUser && review.author.equals(currentUser._id)) { %>	
+			 <button class="btn btn-sm btn-danger">
                DELETE
-			</button>	
-			</form>
+			 </button>	
+			 </form>
 		    <%}%>
-			
+		<%}%>	
 		</div>
 	</div>
 		</div>
