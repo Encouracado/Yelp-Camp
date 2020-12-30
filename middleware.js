@@ -39,7 +39,7 @@ module.exports.validatorReview = (req, res, next)=>{
 		if(error){
 		//a mensagem do erro e um array de objetos por isso voce usa map para exibir o erro em uma unica string
 		const msg = error.details.map(el=> el.message).join('.')
-		throw new expressError(msg, 404)
+		throw new ExpressError(msg, 404)
 	}else{
 		next();
 	}
@@ -48,10 +48,11 @@ module.exports.validatorReview = (req, res, next)=>{
 module.exports.validatorBody = function(req, res, next){		
 	//aqui ocorre a validacao
 	const { error } = campgroundSchema.validate(req.body);
+	console.log(req.body);
 	if(error){
 		//a mensagem do erro e um array de objetos por isso voce usa map para exibir o erro em uma unica string
 		const msg = error.details.map(el=> el.message).join('.')
-		throw new expressError(msg, 404)
+		throw new ExpressError(msg, 404)
 	}else{
 		next();
 	}

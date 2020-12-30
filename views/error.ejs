@@ -2,6 +2,9 @@
 <% layout('layouts/boilerplate') %>
 <div class="row">
 	<div class="alert alert-danger" role="alert">
-  Error Detected: <%= err.message %> <br><a href="/campgrounds" class="alert-link"> Return to Campgrounds</a>.<br> Stack: <%= err.stack %>
+  Error Detected: <%= err.message %> <br><a href="/campgrounds" class="alert-link"> Return to Campgrounds</a>.<br> 
+		<% if(process.env.NODE_ENV !== "production"){ %>
+			Stack: <%= err.stack %> 
+		<% } %>
 </div>
 </div>
